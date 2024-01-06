@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const Candidate = require("./Schema");
 async function dbConnection() {
@@ -14,6 +15,7 @@ async function dbConnection() {
 }
 
 dbConnection();
+app.use(cors())
 app.use(express.json());
 
 app.post("/", async (req, res) => {

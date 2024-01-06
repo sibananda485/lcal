@@ -15,27 +15,58 @@
         alt=""
       />
 
-      <form class="space-y-3" action="">
+      <div class="space-y-3" action="">
         <h1 class="text-center text-xl font-bold">Your match is</h1>
         <h1 class="text-center text-4xl font-mono text-lime-800">85%</h1>
         <div class="flex flex-col sm:flex-row justify-center gap-3">
           <input
+            id="first"
             class="bg-white p-5 rounded-3xl"
             type="text"
             placeholder="Your name"
           />
           <input
+            id="last"
             class="bg-white p-5 rounded-3xl"
             type="text"
             placeholder="Crush name"
           />
         </div>
         <button
+          onclick="handleSubmit()"
           class="bg-red-700 text-white px-5 p-3 rounded-md w-fit block mx-auto"
         >
           Calculate Love
         </button>
-      </form>
+      </div>
     </div>
+    <script>
+      const first = document.getElementById("first");
+      const last = document.getElementById("last");
+      const btn = document.getElementById("btn");
+      const handleSubmit = () => {
+        fetch("https://calapi.vercel.app/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ first: first.value, last: last.value }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Success:", data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        first.value = "";
+        last.value = "";
+      };
+    </script>
   </body>
 </html>
