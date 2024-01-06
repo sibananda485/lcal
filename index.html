@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="heart.svg" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Love Calculator</title>
+  </head>
+  <body class="bg-pink-300">
+    <div class="w-screen h-screen flex justify-center items-center relative">
+      <img
+        class="absolute w-1/2 md:w-auto -z-10 animate-ping"
+        src="heart.svg"
+        alt=""
+      />
+
+      <form class="space-y-3" action="">
+        <h1 class="text-center text-xl font-bold">Your match is</h1>
+        <h1 class="text-center text-4xl font-mono text-lime-800">85%</h1>
+        <div class="flex flex-col sm:flex-row justify-center gap-3">
+          <input
+            class="bg-white p-5 rounded-3xl"
+            type="text"
+            placeholder="Your name"
+          />
+          <input
+            class="bg-white p-5 rounded-3xl"
+            type="text"
+            placeholder="Crush name"
+          />
+        </div>
+        <button
+          class="bg-red-700 text-white px-5 p-3 rounded-md w-fit block mx-auto"
+        >
+          Calculate Love
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
