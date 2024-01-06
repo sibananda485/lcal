@@ -8,16 +8,23 @@
     <title>Love Calculator</title>
   </head>
   <body class="bg-pink-300">
-    <div class="w-screen h-screen flex justify-center items-center relative">
+    <div class="mt-10 mb-32 ">
+
+      <h1 class="font-bold text-center text-xl">Crush Calculator By <a class="text-blue-500" href="https://www.astroai.com/">Astro.ai</a> </h1>
+      <p class="text-center">Get your free horoscope <a class="text-green-800 underline" href="https://www.astroai.com/buyinbulk/wholesale">click here </a></p>
+    </div>
+      <div class="w-[98vw] h-screen flex justify-center i relative">
       <img
         class="absolute w-1/2 md:w-auto -z-10 animate-ping"
         src="heart.svg"
         alt=""
       />
-
       <div class="space-y-3" action="">
-        <h1 class="text-center text-xl font-bold">Your match is</h1>
-        <h1 class="text-center text-4xl font-mono text-lime-800">85%</h1>
+        <h1 id="match" class="text-center text-xl font-bold"></h1>
+        <h1
+          id="score"
+          class="text-center text-4xl font-mono text-lime-800"
+        ></h1>
         <div class="flex flex-col sm:flex-row justify-center gap-3">
           <input
             id="first"
@@ -29,7 +36,7 @@
             id="last"
             class="bg-white p-5 rounded-3xl"
             type="text"
-            placeholder="Crush name"
+            placeholder="Crush / Partner name"
           />
         </div>
         <button
@@ -44,6 +51,8 @@
       const first = document.getElementById("first");
       const last = document.getElementById("last");
       const btn = document.getElementById("btn");
+      const match = document.getElementById("match");
+      const score = document.getElementById("score");
       const handleSubmit = () => {
         fetch("https://calapi.vercel.app/", {
           method: "POST",
@@ -51,21 +60,16 @@
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ first: first.value, last: last.value }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log("Success:", data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-        first.value = "";
-        last.value = "";
+        });
+        let a = Math.round(Math.random() * 100);
+        match.innerHTML = "Calculating......";
+        setTimeout(() => {
+          match.innerHTML = "Your match is";
+          match.classList.remove("hidden");
+          score.innerHTML = `${a}%`;
+          first.value = "";
+          last.value = "";
+        }, 1000);
       };
     </script>
   </body>
